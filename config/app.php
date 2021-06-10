@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Modules\Admin\Providers\AdminServiceProvider::class,
         Modules\Admin\Providers\RouteServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
