@@ -5,6 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Entities\Account;
+use DB;
 
 class AccountController extends Controller
 {
@@ -14,7 +16,52 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('admin::list');
+        $data = [
+            'title' => 'Danh sách tài khoản',
+            'sub_title' => '',
+            'icon' => 'fa fa-list',
+            'menu_left' => '',
+            'menu_right' => '',
+            'listTh' => '',
+            'dataTr' => '',
+            'pagination' => '',
+            'url_add_item' => '',
+            'url_delete_item' => '',
+        ];
+        $listTh = [
+            'check_row' => '',
+            'id' => 'ID',
+            'username' => 'Username',
+            'email' => 'Email',
+            'password' => 'Password(MD5)',
+            'created_at' => 'Ngày tạo',
+            'updated_at' => 'Ngày sửa',
+            'action' => 'Hành động',
+
+        ];
+        $dataTmp = Account::all();
+        $dataTr = [];
+        foreach ($dataTmp as $key => $row)
+        {
+            $dataTr[] = [
+                'check_row' => '<input type="checkbox" class="grid-row-checkbox" data-id="' . $row['id'] . '">',
+                'id' => $row['id'],
+                'username' => $row['username'],
+                'email' => $row['email'],
+                'password' => '<div style="width: 120px;word-wrap: break-word;">'.$row['password'].'</div>',
+                'created_at' => $row['created_at'],
+                'updated_at' => $row['updated_at'],
+                'action' => '<a href="">
+<span title="Xem chi tiết" type="button" class="btn btn-flat btn-primary"><i class="fa fa-info"></i></span>
+</a>
+<span onclick=""  title="Xóa đối tượng" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>',
+            ];
+        }
+        $data['listTh'] = $listTh;
+        $data['dataTr'] = $dataTr;
+
+        return view('admin::list')
+            ->with('data',$data);
     }
 
     /**

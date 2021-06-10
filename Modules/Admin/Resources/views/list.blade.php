@@ -4,9 +4,10 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h3>
+                <i class="{{$data['icon']}}"></i>
                 {{ $data['title']}}
                 <small>{{ $data['sub_title']}}</small>
-            <button class="btn btn-lg btn-primary" style="float: right">Thêm mới</button>
+            <button class="btn btn-primary" style="float: right">Thêm mới</button>
             </h3>
         </section>
         <!-- Main content -->

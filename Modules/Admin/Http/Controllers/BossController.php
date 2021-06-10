@@ -5,6 +5,7 @@ use Modules\Admin\Entities\Boss;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use DB;
 
 class BossController extends Controller
 {
@@ -15,6 +16,7 @@ class BossController extends Controller
     public function index()
     {
         $dataTmp = Boss::all();
+
         $data = [
             'title' => 'Danh sách HT',
             'sub_title' => '',
@@ -33,21 +35,24 @@ class BossController extends Controller
             'rank' => 'Cấp bậc',
             'star' => 'Sao',
             'position' => 'Chức vụ',
-            'area' => 'Khu vụe',
+            'area' => 'Khu vực',
             'action' => 'Hành động',
         ];
         $data['listTh']=$listTh;
         foreach($dataTmp as $key => $row){
             $dataTr[] = [
-                'check_row' => '',
-                'fullname' => $row['fullname'],
-                'phone' => $row['phone'],
-                'birth' => $row['birth'],
-                'rank' => $row['rank'],
-                'star' => $row['star'],
-                'position' => $row['position'],
-                'area' => $row['area'],
-                'action' => '<button type = "button" class="btn btn-primary">Sửa</button><button type = "button" class="btn btn-danger">Xóa</button>',
+                'check_row' => '<input type="checkbox" class="grid-row-checkbox" data-id="' . $row->id . '">',
+                'fullname' => $row->fullname,
+                'phone' => $row->phone,
+                'birth' => $row->birth,
+                'rank' => $row->getRank->name_rank,
+                'star' => $row->star,
+                'position' => $row->position,
+                'area' => $row->area,
+                'action' => '<a href="">
+<span title="Xem chi tiết" type="button" class="btn btn-flat btn-primary"><i class="fa fa-info"></i></span>
+</a>
+<span onclick=""  title="Xóa đối tượng" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>',
             ];
         }
         $data['dataTr']=$dataTr;
