@@ -1,1223 +1,242 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Data Tables</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.4 -->
+    <link href="{{asset('a/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- DATA TABLES -->
+    <link href="{{asset('a/plugins/datatables/dataTables.bootstrap.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="{{asset('a/dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="{{asset('a/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet" type="text/css" />
 
-    <!-- start: Meta -->
-    <meta charset="utf-8">
-    <title>Trang quản trị 3T-Original</title>
-    <meta name="description" content="Trang quản trị 3T-Original">
-    <meta name="author" content="Khoa JR">
-    <!-- end: Meta -->
-
-    <!-- start: Mobile Specific -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- end: Mobile Specific -->
-
-    <!-- start: CSS -->
-    <link id="bootstrap-style" href="{{asset('a/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('a/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
-    <link id="base-style" href="{{asset('a/css/style.css')}}" rel="stylesheet">
-    <link id="base-style-responsive" href="{{asset('a/css/style-responsive.css')}}" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-    <!-- end: CSS -->
-
-    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js')}}"></script>
-    <link id="ie-style" href="{{asset('a/css/ie.css')}}" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')}}"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}"></script>
     <![endif]-->
-
-    <!--[if IE 9]>
-    <link id="ie9style" href="{{asset('a/css/ie9.css')}}" rel="stylesheet">
-    <![endif]-->
-
-    <!-- start: Favicon -->
-    <link rel="shortcut icon" href="{{asset('a/img/favicon.ico')}}">
-    <!-- end: Favicon -->
-
-
-
-
 </head>
+<body class="skin-blue sidebar-mini">
+<div class="wrapper">
 
-<body>
-<!-- start: Header -->
-@include('admin::layouts.header')
+    @include('admin::layouts.header')
+    <!-- Left side column. contains the logo and sidebar -->
+    @include('admin::layouts.sidebar')
 
-<!-- start: Header -->
+    <!-- Content Wrapper. Contains page content -->
+    @yield('content')<!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.2.0
+        </div>
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+    </footer>
 
-<div class="container-fluid-full">
-    <div class="row-fluid">
-
-        <!-- start: Main Menu -->
-        @include('admin::layouts.menu')
-
-        <!-- end: Main Menu -->
-
-        <noscript>
-            <div class="alert alert-block span10">
-                <h4 class="alert-heading">Warning!</h4>
-                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
-            </div>
-        </noscript>
-
-        <!-- start: Content -->
-        <div id="content" class="span10">
-
-
-            <ul class="breadcrumb">
-                <li>
-                    <i class="icon-home"></i>
-                    <a href="index.html">Home</a>
-                    <i class="icon-angle-right"></i>
-                </li>
-                <li><a href="#">Tables</a></li>
-            </ul>
-
-            <div class="row-fluid sortable">
-                <div class="box span12">
-                    <div class="box-header" data-original-title>
-                        <h2><i class="halflings-icon white user"></i><span class="break"></span>Members</h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                            <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/08/23</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/08/23</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/06/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/06/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/08/23</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/08/23</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/06/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="#">
-                                        <i class="halflings-icon white zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info" href="#">
-                                        <i class="halflings-icon white edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger" href="#">
-                                        <i class="halflings-icon white trash"></i>
-
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div><!--/span-->
-
-            </div><!--/row-->
-
-            <div class="row-fluid sortable">
-                <div class="box span6">
-                    <div class="box-header">
-                        <h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Simple Table</h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="pagination pagination-centered">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/span-->
-
-                <div class="box span6">
-                    <div class="box-header">
-                        <h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Striped Table</h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="pagination pagination-centered">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/span-->
-            </div><!--/row-->
-
-            <div class="row-fluid sortable">
-                <div class="box span6">
-                    <div class="box-header">
-                        <h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Bordered Table</h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="pagination pagination-centered">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/span-->
-
-                <div class="box span6">
-                    <div class="box-header">
-                        <h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Condensed Table</h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <table class="table table-condensed">
-                            <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="pagination pagination-centered">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/span-->
-
-            </div><!--/row-->
-
-            <div class="row-fluid sortable">
-                <div class="box span12">
-                    <div class="box-header">
-                        <h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Combined All Table</h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                            <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <table class="table table-bordered table-striped table-condensed">
-                            <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-important">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/02/01</td>
-                                <td class="center">Admin</td>
-                                <td class="center">
-                                    <span class="label">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/03/01</td>
-                                <td class="center">Member</td>
-                                <td class="center">
-                                    <span class="label label-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/21</td>
-                                <td class="center">Staff</td>
-                                <td class="center">
-                                    <span class="label label-success">Active</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="pagination pagination-centered">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/span-->
-            </div><!--/row-->
-
-
-        </div><!--/.fluid-container-->
-
-        <!-- end: Content -->
-    </div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="modal hide fade" id="myModal">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Settings</h3>
-    </div>
-    <div class="modal-body">
-        <p>Here settings can be configured...</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-        <a href="#" class="btn btn-primary">Save changes</a>
-    </div>
-</div>
-<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-        <ul class="list-inline item-details">
-            <li><a href="http://themifycloud.com">Admin templates</a></li>
-            <li><a href="http://themescloud.org">Bootstrap themes</a></li>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
-    </div>
-</div>
-<div class="clearfix"></div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-user bg-yellow"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                                <p>New phone +1(800)555-1234</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                                <p>nora@example.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                                <p>Execution time 5 seconds</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul><!-- /.control-sidebar-menu -->
 
-<footer>
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="label label-danger pull-right">70%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Update Resume
+                                <span class="label label-success pull-right">95%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Laravel Integration
+                                <span class="label label-warning pull-right">50%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript::;">
+                            <h4 class="control-sidebar-subheading">
+                                Back End Framework
+                                <span class="label label-primary pull-right">68%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul><!-- /.control-sidebar-menu -->
 
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://themifycloud.com/downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
+            </div><!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked />
+                        </label>
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div><!-- /.form-group -->
 
-    </p>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Allow mail redirect
+                            <input type="checkbox" class="pull-right" checked />
+                        </label>
+                        <p>
+                            Other sets of options are available
+                        </p>
+                    </div><!-- /.form-group -->
 
-</footer>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Expose author name in posts
+                            <input type="checkbox" class="pull-right" checked />
+                        </label>
+                        <p>
+                            Allow the user to show his name in blog posts
+                        </p>
+                    </div><!-- /.form-group -->
 
-<!-- start: JavaScript-->
+                    <h3 class="control-sidebar-heading">Chat Settings</h3>
 
-<script src="{{asset('a/js/jquery-1.9.1.min.js')}}"></script>
-<script src="{{asset('a/js/jquery-migrate-1.0.0.min.js')}}"></script>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Show me as online
+                            <input type="checkbox" class="pull-right" checked />
+                        </label>
+                    </div><!-- /.form-group -->
 
-<script src="{{asset('a/js/jquery-ui-1.10.0.custom.min.js')}}"></script>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Turn off notifications
+                            <input type="checkbox" class="pull-right" />
+                        </label>
+                    </div><!-- /.form-group -->
 
-<script src="{{asset('a/js/jquery.ui.touch-punch.js')}}"></script>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Delete chat history
+                            <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                        </label>
+                    </div><!-- /.form-group -->
+                </form>
+            </div><!-- /.tab-pane -->
+        </div>
+    </aside><!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
 
-<script src="{{asset('a/js/modernizr.js')}}"></script>
-
-<script src="{{asset('a/js/bootstrap.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.cookie.js')}}"></script>
-
-<script src="{{asset('a/js/fullcalendar.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.dataTables.min.js')}}"></script>
-
-<script src="{{asset('a/js/excanvas.js')}}"></script>
-<script src="{{asset('a/js/jquery.flot.js')}}"></script>
-<script src="{{asset('a/js/jquery.flot.pie.js')}}"></script>
-<script src="{{asset('a/js/jquery.flot.stack.js')}}"></script>
-<script src="{{asset('a/js/jquery.flot.resize.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.chosen.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.uniform.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.cleditor.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.noty.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.elfinder.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.raty.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.iphone.toggle.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.uploadify-3.1.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.gritter.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.imagesloaded.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.masonry.min.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.knob.modified.js')}}"></script>
-
-<script src="{{asset('a/js/jquery.sparkline.min.js')}}"></script>
-
-<script src="{{asset('a/js/counter.js')}}"></script>
-
-<script src="{{asset('a/js/retina.js')}}"></script>
-
-<script src="{{asset('a/js/custom.js')}}"></script>
-<!-- end: JavaScript-->
-
+<!-- jQuery 2.1.4 -->
+<script src="{{asset('a/plugins/jQuery/jQuery-2.1.4.min.js')}}" type="text/javascript"></script>
+<!-- Bootstrap 3.3.2 JS -->
+<script src="{{asset('a/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
+<!-- DATA TABES SCRIPT -->
+<script src="{{asset('a/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('a/plugins/datatables/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
+<!-- SlimScroll -->
+<script src="{{asset('a/plugins/slimScroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
+<!-- FastClick -->
+<script src="{{asset('a/plugins/fastclick/fastclick.min.js')}}" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('a/dist/js/app.min.js')}}" type="text/javascript"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('a/dist/js/demo.js')}}" type="text/javascript"></script>
+<!-- page script -->
+<script type="text/javascript">
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
 </body>
 </html>

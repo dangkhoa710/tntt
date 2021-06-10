@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public $timestamps = false;
+    public $table = 'tbl_users';
+
     use HasFactory, Notifiable;
 
     /**

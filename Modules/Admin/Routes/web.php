@@ -1,16 +1,19 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-use Modules\Admin\Http\Controllers\AdminController;
-Route::prefix('admin')->group(function() {
-    Route::get('/',[AdminController::class, 'index']);
-});
+use Illuminate\Routing\Router;
+
+Route::group(
+    [
+        'prefix' => 'admin',
+//        'middleware' => SC_ADMIN_MIDDLEWARE,
+        'namespace' => 'Modules\Admin\Http\Controllers'
+    ],
+    function (Router $router) {
+        foreach (glob(__DIR__ . '/*.php') as $filename) {
+            require_once $filename;
+        }
+        //
+        Route::get('/', function () {
+            return  redirect(route('admin.login'));
+        });
+    });

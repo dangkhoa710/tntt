@@ -15,7 +15,12 @@ class AdminController extends Controller
     public function index()
     {
 //        dd('đây là trang admin');
-        return view('admin::index');
+
+        return view('admin::dashboard');
+    }
+    public function list()
+    {
+        return view('admin::list');
     }
 
     /**
