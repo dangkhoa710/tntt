@@ -35,6 +35,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     @yield('content')<!-- /.content-wrapper -->
+    @stack('scripts')
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.2.0

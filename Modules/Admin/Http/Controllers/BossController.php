@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers;
 use Modules\Admin\Entities\Boss;
+use Modules\Admin\Entities\Area;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -23,6 +24,7 @@ class BossController extends Controller
             'icon' => 'fa fa-list',
             'listTh' => '',
             'dataTr' => '',
+
             'pagination' => '',
             'result_items' => '',
             'url_delete_item' => '',
@@ -47,8 +49,8 @@ class BossController extends Controller
                 'birth' => $row->birth,
                 'rank' => $row->getRank->name_rank,
                 'star' => $row->star,
-                'position' => $row->position,
-                'area' => $row->area,
+                'position' => $row->getPosition->name_position,
+                'area' => $row->getArea->name_area,
                 'action' => '<a href="">
 <span title="Xem chi tiết" type="button" class="btn btn-flat btn-primary"><i class="fa fa-info"></i></span>
 </a>
